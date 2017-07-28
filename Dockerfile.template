@@ -1,7 +1,7 @@
 # Build container
 FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch AS build
 
-WORKDIR /root/
+WORKDIR /usr/src/app
 
 RUN    apt-get update \
     && apt-get -q install \
@@ -19,9 +19,9 @@ RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
 # Runtime container
 FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
 
-WORKDIR /root/
+WORKDIR /usr/src/app
 
-COPY --from=build /opt/ffmpeg /opt/ffmpeg
+COPY --from=build /opt/ffmpeg/ /usr/
 
 RUN    apt-get update \
     && apt-get -q install \
