@@ -1,5 +1,5 @@
 # Build container
-FROM resin/raspberry-pi-debian:stretch AS build
+FROM resin/rpi-raspbian:stretch AS build
 
 WORKDIR /root/
 
@@ -17,7 +17,7 @@ RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
     && make install
 
 # Runtime container
-FROM resin/raspberry-pi-debian:stretch
+FROM resin/rpi-raspbian:stretch
 
 WORKDIR /root/
 
