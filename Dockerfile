@@ -1,5 +1,5 @@
 # Build container
-FROM resin/rpi-raspbian:stretch AS build
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch AS build
 
 WORKDIR /root/
 
@@ -12,12 +12,12 @@ RUN    apt-get update \
 
 RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
     && cd FFmpeg \
-    && ./configure --arch=armel --target-os=linux --enable-gpl --enable-omx --enable-omx-rpi --enable-nonfree --prefix="/opt/ffmpeg" \
+    && ./configure --arch=armhf --target-os=linux --enable-gpl --enable-omx --enable-omx-rpi --enable-nonfree --prefix="/opt/ffmpeg" \
     && make \
     && make install
 
 # Runtime container
-FROM resin/rpi-raspbian:stretch
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
 
 WORKDIR /root/
 
