@@ -21,7 +21,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
 
 WORKDIR /root/
 
-COPY --from=build /opt/ffmpeg/ /
+COPY --from=build /opt/ffmpeg /opt/ffmpeg
 
 RUN    apt-get update \
     && apt-get -q install \
