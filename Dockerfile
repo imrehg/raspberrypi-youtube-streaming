@@ -6,8 +6,10 @@ ENV INITSYSTEM on
 
 RUN    apt-get update \
     && apt-get -qy install \
-          build-essential git \
-          libomxil-bellagio-dev
+          build-essential \
+          git \
+          libomxil-bellagio-dev \
+          pkg-config
 
 RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
     && cd FFmpeg \
