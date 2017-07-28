@@ -21,8 +21,6 @@ FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
 
 WORKDIR /root/
 
-ENV INITSYSTEM on
-
 COPY --from=build /opt/ffmpeg/ /
 
 RUN    apt-get update \
