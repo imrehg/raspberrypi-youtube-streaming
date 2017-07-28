@@ -4,7 +4,7 @@ FROM resin/raspberry-pi-debian:stretch AS build
 WORKDIR /root/
 
 RUN    apt-get update \
-    && apt-get -qy install \
+    && apt-get -q install \
           build-essential \
           git \
           libomxil-bellagio-dev \
@@ -26,7 +26,7 @@ ENV INITSYSTEM on
 COPY --from=build /opt/ffmpeg/ /
 
 RUN    apt-get update \
-    && apt-get -qy install \
+    && apt-get -q install \
          libraspberrypi-bin \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
