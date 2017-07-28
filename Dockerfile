@@ -2,7 +2,6 @@
 FROM resin/raspberry-pi-debian:stretch AS build
 
 WORKDIR /root/
-ENV INITSYSTEM on
 
 RUN    apt-get update \
     && apt-get -qy install \
@@ -21,6 +20,9 @@ RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
 FROM resin/raspberry-pi-debian:stretch
 
 WORKDIR /root/
+
+ENV INITSYSTEM on
+
 COPY --from=build /opt/ffmpeg/ /
 
 RUN    apt-get update \
