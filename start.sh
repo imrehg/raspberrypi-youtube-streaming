@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ -z "$YOUTUBE_STREAM_KEY" ]; then
 
-    echo "Please set the LIVE_STREAM_KEY environment variable! (find it in stream dashboard / Encoder Setup section)"
+    echo "Please set the YOUTUBE_STREAM_KEY environment variable! (find it in stream dashboard / Encoder Setup section)"
     while : ; do
         echo "Idling..."
         sleep 600
