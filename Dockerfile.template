@@ -12,8 +12,8 @@ RUN    apt-get update \
 
 RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
     && cd FFmpeg \
-    && ./configure --arch=armhf --target-os=linux --enable-gpl --enable-mmal --enable-omx --enable-omx-rpi --enable-nonfree --prefix="/opt/ffmpeg" \
-    && make -j0 \
+    && ./configure --arch=armhf --target-os=linux --enable-gpl --enable-omx --enable-omx-rpi --enable-nonfree --prefix="/opt/ffmpeg" \
+    && make \
     && make install
 
 # Runtime container
