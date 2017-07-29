@@ -1,0 +1,33 @@
+# Build container
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch AS build
+
+WORKDIR /usr/src/app
+
+RUN    apt-get update \
+    && apt-get -q install \
+          build-essential \
+          git \
+          libomxil-bellagio-dev \
+          pkg-config
+
+RUN    git clone --depth=1 https://github.com/FFmpeg/FFmpeg.git \
+    && cd FFmpeg \
+    && ./configure --arch=armhf --target-os=linux --enable-gpl --enable-omx --enable-omx-rpi --enable-nonfree --prefix="/opt/ffmpeg" \
+    && make \
+    && make install
+
+# Runtime container
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
+
+WORKDIR /usr/src/app
+
+COPY --from=build /opt/ffmpeg/ /usr/
+
+RUN    apt-get update \
+    && apt-get -q install \
+         libraspberrypi-bin \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY start.sh ./
+
+CMD ["bash", "start.sh"]
