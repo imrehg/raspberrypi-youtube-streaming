@@ -7,7 +7,7 @@ if [ -z "$YOUTUBE_STREAM_KEY" ]; then
         sleep 600
     done
 else
-    echo Live-stream secret: ${YOUTUBE_STREAM_KEY}
+    echo Youtube live stream key: ${YOUTUBE_STREAM_KEY}
 fi
 
 raspivid -o - -t 0 -w 1920 -h 1080 -fps 30 -b 4500000 -g 40 ${RASPIVID_EXTRA_FLAGS} | \
